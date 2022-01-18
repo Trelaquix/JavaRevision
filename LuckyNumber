@@ -1,0 +1,54 @@
+/**
+  * Write a program to determine if a number is a lucky number.
+  * A lucky number is a number where the sum of squares of every even-positioned digit is a multiple of 9
+ */
+ 
+class LuckyNumber {
+	// Attributes
+	int numberToCheck;
+	int sum = 0;
+	String isLuckyNumber;;
+
+	// Constructor
+	LuckyNumber(int number) {
+		this.numberToCheck = number;
+		this.sum = calculate(this.numberToCheck);
+		this.isLuckyNumber = checkNumber();
+	}
+
+	// Method
+	public int calculate(int test) {
+		// Calculate sum of every even positioned number
+		String convertToString = test + "";
+		for (int i = 0; i < convertToString.length(); i++) {
+			int num = Integer.parseInt(convertToString.charAt(i) + "");
+			
+			// Check if number positioning returns remainder of 1
+			if (i % 2 == 1) {
+				sum += Math.pow(num, 2);
+			}
+		}
+		return sum;
+	}
+
+	// Method
+	public String checkNumber() {
+		String statement = "";
+		// Check if the sum of even numbers is a multiple of 9
+		if(this.sum % 9 == 0) {
+			statement = "The number "+this.numberToCheck+" is a Lucky number";
+		} else {
+			statement = "Oops! Not a Lucky number";
+		}
+		return statement;
+	}
+}
+
+public class Tester {
+
+	public static void main(String[] args) {
+		LuckyNumber newNumber = new LuckyNumber(1234);
+		String checkNumber =newNumber.checkNumber();
+		System.out.println(checkNumber);
+	} 
+}
