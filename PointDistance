@@ -1,0 +1,73 @@
+/**
+ * Write a program to calculate the distance of a point to from its origin.
+ * Write another program to calculate the distance of a point with reference to another point.
+ */
+
+
+class Point {
+	
+	private double x;
+	private double y;
+	
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public double getY() {
+		return y;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
+	
+	public Point(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	//Method to obtain distance of a point w.r.t origin
+	public double distance(){
+	    //code here
+		double x = getX();
+		double y = getY();
+		double squareOfX = Math.pow(x, 2); // 4 - X to the power of 2
+		double squareOfY = Math.pow(y, 2); // 9 - Y to the power of 2.
+		
+		double distance = Math.sqrt(squareOfX+squareOfY); // 3.605551275463989
+		return distance;
+
+//		double roundedDistance = Math.round(distance*100.0)/100.0; // 3.61
+//		return roundedDistance;
+	}
+	
+	//Method to obtain distance of a point w.r.t another point
+	public double distance(Point point){
+	    //code here
+		double gettingPointX1 = this.getX();
+		double gettingPointX2 = point.getX();
+		double x1Minusx2 = gettingPointX1 - gettingPointX2;
+		
+		double gettingPointY1 = this.getY();
+		double gettingPointY2 = point.getY();
+		double y1Minusy2 = gettingPointY1 - gettingPointY2;
+		
+		double squareOfX = Math.pow(x1Minusx2, 2);
+		double squareOfY = Math.pow(y1Minusy2, 2);
+		
+		double distance = Math.sqrt(squareOfX+squareOfY); 
+		return distance;
+	}
+
+}
+public class Tester {
+	public static void main(String[] args) {
+	    //code here
+    	Point p1 = new Point(2,3);
+    	Point p2 = new Point(5,6);
+    	
+    	System.out.println("The distance of p1 from p2 is " + p1.distance(p2));
+    	System.out.println("The distance of p1 from the origin is " + p1.distance());
+	}
+}
